@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ENOC Mini-App (Web3Modal v2)</title>
+
+  <style>
+    :root{--accent:#4a148c}
+    body{font-family:Inter,Arial,Helvetica,sans-serif;background:#f5f6fa;color:#222;margin:0;padding:18px;display:flex;justify-content:center}
+    .card{width:100%;max-width:620px;background:#fff;border-radius:12px;padding:22px;box-shadow:0 10px 30px rgba(0,0,0,.08)}
+    h1{color:var(--accent);margin:0 0 8px;font-size:22px}
+    p.lead{color:#444;margin:6px 0 18px}
+    .row{display:flex;gap:8px;flex-wrap:wrap}
+    label{display:block;margin-top:10px;color:#555;font-weight:600}
+    input[type="text"], input[type="number"]{width:100%;padding:10px;border-radius:8px;border:1px solid #d0d0d5;box-sizing:border-box}
+    button{background:var(--accent);color:#fff;border:none;padding:10px 14px;border-radius:8px;font-weight:600;cursor:pointer}
+    button.ghost{background:#eee;color:#333}
+    .muted{color:#666;font-size:13px}
+    #status{margin-top:12px;padding:10px;border-radius:8px;background:#f7f7fa;border:1px solid #efefef}
+    .small{font-size:13px;color:#666}
+    .info-line{display:flex;justify-content:space-between;gap:12px;margin-top:8px}
+    .hint{font-size:13px;color:#777}
+    .warning{background:#fff3cd;border:1px solid #ffe8a1;padding:8px;border-radius:8px;color:#6b4900;margin-top:12px}
+    footer{margin-top:16px;font-size:13px;color:#666}
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>ENOC Mini-App (v2)</h1>
+    <p class="lead">Compra ENOC en Polygon. Conecta tu wallet (MetaMask, Trust, OKX, Binance Wallet u otra a través de WalletConnect).</p>
+
+    <div class="row" style="margin-bottom:8px">
+      <button id="btnConnect">Conectar Wallet</button>
+      <button id="btnDisconnect" class="ghost" style="display:none">Desconectar</button>
+    </div>
+
+    <div id="connectedPanel" style="display:none">
+      <div class="info-line"><div class="small">Cuenta</div><div id="account" class="muted">—</div></div>
+      <div class="info-line"><div class="small">Red</div><div id="chain" class="muted">—</div></div>
+
+      <label for="amountUSDT">Cantidad USDT (Polygon)</label>
+      <input id="amountUSDT" type="number" step="0.0001" placeholder="Ej: 1.5">
+
+      <div style="margin-top:10px" class="row">
+        <button id="btnBuy">Comprar ENOC</button>
+        <button id="btnAddLiquidity" class="ghost">(Admin) Añadir Liquidez</button>
+      </div>
+
+      <div id="status" aria-live="polite">Estado: <span id="statusText">No conectado</span></div>
+      <p class="hint">Advertencia: en esta demo `amountOutMin` está puesto en 0 para evitar fallos durante pruebas. En producción siempre establecer mínimo para proteger del slippage.</p>
+    </div>
+
+    <div id="notConnectedPanel">
+      <div class="warning" id="noWeb3">Si tienes problemas, intenta abrir la URL desde MetaMask Mobile (browser), Trust Wallet o usa WalletConnect desde Chrome.</div>
+    </div>
+
+    <footer>
+      <div class="small">ENOC — Estados No Ordinarios de Conciencia · Red: Polygon</div>
+    </footer>
+  </div>
+
+  <!-- app.js (módulo) -->
+  <script type="module" src="app.js"></script>
+</body>
+</html>
