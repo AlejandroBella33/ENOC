@@ -1,56 +1,104 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>ENOC Mini-App</title>
-
-    <!-- Web3.js -->
-    <script src="https://cdn.jsdelivr.net/npm/web3@1.10.0/dist/web3.min.js"></script>
-
-    <!-- WalletConnect v2 -->
-    <script src="https://unpkg.com/@walletconnect/web3-provider@1.8.0/dist/umd/index.min.js"></script>
-
-    <!-- Web3Modal -->
-    <script src="https://unpkg.com/web3modal@1.9.8/dist/index.js"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ENOC Token (Estados No Ordinarios de Conciencia)</title>
 
     <style>
-        body { font-family: Arial; background: #f7f7f9; padding: 20px; }
-        #container { padding: 20px; background: white; border-radius: 10px; max-width: 420px; margin: auto;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
-        button { padding: 12px 20px; border: none; border-radius: 6px; cursor: pointer; 
-            background: #4a148c; color: white; font-size: 16px; }
-        button:hover { background: #6a1b9a; }
-        input { width: 100%; padding: 10px; margin-top: 10px; border-radius: 6px; border: 1px solid #ccc; }
-        #statusText { margin-top: 15px; font-weight: bold; }
+        body {
+            font-family: Arial, sans-serif;
+            background: #0b0f19;
+            color: #e9e9e9;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        header {
+            padding: 40px 20px;
+        }
+
+        img.logo {
+            width: 160px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 28px;
+            color: #4fc3f7;
+        }
+
+        section {
+            max-width: 650px;
+            margin: auto;
+            padding: 20px;
+            line-height: 1.6;
+            text-align: left;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 20px;
+            background: #4fc3f7;
+            color: black;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        footer {
+            margin-top: 40px;
+            padding: 20px;
+            opacity: 0.6;
+            font-size: 14px;
+        }
     </style>
 </head>
 
 <body>
 
-<div id="container">
-    <h2>ENOC Mini-App</h2>
+<header>
+    <img src="logo.svg" alt="ENOC logo" class="logo" />
+    <h1>ENOC Token</h1>
+    <p>(Estados No Ordinarios de Conciencia)</p>
+</header>
 
-    <!-- Panel desconectado -->
-    <div id="notConnectedPanel">
-        <button id="btnConnect">Conectar Wallet</button>
-        <p id="statusText">Conecta tu wallet para comenzar.</p>
-    </div>
+<section>
+    <h2>¿Qué es ENOC?</h2>
+    <p>
+        ENOC es un token experimental en la red Polygon, creado para explorar nuevas formas 
+        de comunidad, economía consciente y modelos de participación basados en estabilidad,
+        transparencia y crecimiento sostenible.
+    </p>
 
-    <!-- Panel conectado -->
-    <div id="connectedPanel" style="display:none;">
-        <p><strong>Cuenta:</strong> <span id="account"></span></p>
-        <p><strong>Red:</strong> <span id="chain"></span></p>
+    <h2>Características</h2>
+    <ul>
+        <li>Token ERC-20 en Polygon.</li>
+        <li>Liquidez pública en DEX.</li>
+        <li>Proyecto independiente y transparente.</li>
+        <li>Enfoque en comunidad y educación financiera.</li>
+    </ul>
 
-        <button id="btnDisconnect" style="background:#b71c1c;">Desconectar</button>
+    <h2>Contrato del Token</h2>
+    <p><strong>Dirección:</strong><br>
+        0xab8DF9213d13a3cDe984A83129e6acDaCBA78633
+    </p>
 
-        <h3>Comprar ENOC</h3>
-        <input id="amountUSDT" placeholder="Monto en USDT">
-        <button id="btnBuy">Comprar ENOC</button>
+    <a href="https://polygonscan.com/token/0xab8DF9213d13a3cDe984A83129e6acDaCBA78633" target="_blank" class="btn">
+        Ver en PolygonScan
+    </a>
 
-        <p id="statusText"></p>
-    </div>
-</div>
+    <h2>Comunidad</h2>
+    <p>Únete al grupo oficial para novedades y actualizaciones:</p>
 
-<script src="app.js"></script>
+    <a href="https://t.me/TU_GRUPO_TELEGRAM" target="_blank" class="btn">Telegram oficial</a>
+</section>
+
+<footer>
+    © ENOC Token – Proyecto experimental en Polygon
+</footer>
+
 </body>
 </html>
