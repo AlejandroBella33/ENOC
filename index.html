@@ -15,7 +15,7 @@
         <p class="subtitle">Estados No Ordinarios de Conciencia — Token en Polygon (ENOC)</p>
 
         <div class="dashboard">
-          <h3>Conectar Wallet</h3>
+          <h3>Comprar ENOC en la App</h3>
           <div class="status-box">
             <p id="statusText" class="status-msg"></p>
 
@@ -24,17 +24,28 @@
             </div>
 
             <div id="connectedPanel" style="display: none;">
-              <p>Conectado:</p>
+              <p>Wallet Conectada:</p>
               <p>Cuenta: <code id="account"></code></p>
               <p>Chain ID: <code id="chain"></code></p>
-              <button id="btnDisconnect" class="btn alt" style="display: none;">Desconectar</button>
               
               <div class="buy-interface">
                 <input type="number" id="amountUSDT" placeholder="Cantidad de USDT a gastar" min="0.01" step="0.01" />
                 <button id="btnBuy" class="btn primary">Comprar ENOC (Swap)</button>
               </div>
+              
+              <button id="btnDisconnect" class="btn alt">Desconectar</button>
             </div>
           </div>
+        </div>
+        <div class="disclaimer-whale-control">
+            <h3>🛡️ Reglas de Estabilidad y Crecimiento Consciente</h3>
+            <p><strong>Para fomentar un crecimiento equilibrado y proteger a nuestros *hodlers*, el Contrato Inteligente ENOC incluye mecanismos anti-ballena:</strong></p>
+            <ul>
+                <li><strong>Límite de Holding:</strong> Ninguna billetera individual (aparte de las de tesorería del proyecto) puede poseer más del 5% del suministro total de tokens.</li>
+                <li><strong>Límite de Venta:</strong> Se impone un límite máximo a la cantidad de ENOC que se puede vender en una sola transacción.</li>
+                <li><strong>Período de Retiro:</strong> Las ventas sucesivas pueden tener un *cooldown* temporal.</li>
+            </ul>
+            <p class="small">Revisa siempre el contrato oficial para la información más precisa sobre las limitaciones antes de interactuar. Si la compra falla, puede ser por estos límites.</p>
         </div>
         <div class="meta">
           <div class="contract">
@@ -57,15 +68,48 @@
         </p>
 
         <div class="how-to" id="howto">
-          <h3>Cómo comprar ENOC — paso a paso</h3>
+          <h3>Cómo comprar ENOC — Métodos Alternativos</h3>
+
+          <div class="step">
+            <h4>1) Comprar con MetaMask (móvil o extensión)</h4>
+            <ol>
+              <li>Abrí MetaMask y seleccioná la red <strong>Polygon (Mainnet)</strong>.</li>
+              <li>Añadí fondos (USDT en Polygon).</li>
+              <li>Ir a <em>Swap</em> en MetaMask y pegar la dirección del token ENOC (<code>0xab8DF9...6633</code>) en "To".</li>
+              <li>Seleccioná la cantidad de USDT y ajustá el <strong>slippage</strong> al 1–3%.</li>
+              <li>Confirmá la transacción.</li>
+            </ol>
+            <p class="small">Consejo: si el token no aparece, usá "Import token".</p>
           </div>
 
-        <p class="disclaimer">Importante: en todas las compras revisá siempre la dirección del contrato y el slippage para evitar pérdidas. Empieza con montos pequeños para probar.</p>
+          <div class="step">
+            <h4>2) Comprar en QuickSwap</h4>
+            <ol>
+              <li>Ir a QuickSwap: <a href="#" id="quickswapLink" target="_blank">Abrir QuickSwap</a>.</li>
+              <li>Conectar wallet, elegir <strong>USDT → ENOC</strong>.</li>
+              <li>Establecer slippage (1–3%) y confirmar swap.</li>
+            </ol>
+          </div>
+
+          <p class="disclaimer">Importante: en todas las compras revisá siempre la dirección del contrato y el slippage.</p>
+        </div>
 
         <div class="cards">
+          <div class="card">
+            <h4>Red</h4>
+            <p>Polygon (Matic)</p>
           </div>
+          <div class="card">
+            <h4>Símbolo</h4>
+            <p>ENOC</p>
+          </div>
+          <div class="card">
+            <h4>Tipo</h4>
+            <p>ERC-20 (Polygon)</p>
+          </div>
+        </div>
 
-        <p class="hint">Nota: para comprar desde la web recomendamos MetaMask/Trust/WalletConnect. Si usas World App, usa la mini-app nativa.</p>
+        <p class="hint">Nota: para comprar desde la web recomendamos MetaMask/Trust/WalletConnect.</p>
 
         <p class="credit">© ENOC — Proyecto comunitario</p>
       </div>
@@ -79,15 +123,16 @@
   <script src="https://unpkg.com/web3modal@1.9.12/dist/index.js"></script>
   <script src="https://unpkg.com/@walletconnect/web3-provider@1.8.0/dist/umd/index.min.js"></script>
   
-  <script src="app.js"></script> <script>
-    // ... (Script de configuración inicial y copiadora) ...
+  <script src="app.js"></script>
+
+  <script>
     const CONTRACT = "0xab8DF9213d13a3cDe984A83129e6acDaCBA78633";
     const USDT = "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174";
     const ENOC = CONTRACT;
     const quickswapURL = `https://quickswap.exchange/#/swap?outputCurrency=${ENOC}&inputCurrency=${USDT}`;
 
     document.getElementById("contract").innerText = CONTRACT;
-    document.getElementById("btnQuickSwap").href = quickswapURL; // Cambié 'btnBuy' por 'btnQuickSwap' para evitar confusión con el botón de swap en el dashboard
+    document.getElementById("btnQuickSwap").href = quickswapURL;
     document.getElementById("btnScan").href = `https://polygonscan.com/token/${CONTRACT}`;
     document.getElementById("quickswapLink").href = quickswapURL;
 
