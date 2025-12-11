@@ -1,0 +1,119 @@
+/* style.css — ENOC landing (holográfico/cósmico) */
+/* Mobile-first responsive */
+
+:root{
+  --bg-1: #05060a;
+  --bg-2: #081426;
+  --accent: #4fc3f7;
+  --accent-2: #ffd166;
+  --muted: rgba(255,255,255,0.68);
+  --glass: rgba(255,255,255,0.04);
+  --card: rgba(255,255,255,0.03);
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif;
+  background: linear-gradient(180deg, var(--bg-1) 0%, var(--bg-2) 100%);
+  color: #eef6ff;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+
+/* Background decorative layers */
+.bg-stars {
+  position:fixed; inset:0; z-index:0;
+  background-image: radial-gradient(rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size: 60px 60px;
+  opacity:0.8; pointer-events:none;
+  mix-blend-mode: screen;
+  animation: drift 60s linear infinite;
+  filter: blur(8px) saturate(130%);
+}
+@keyframes drift { from { transform: translateY(0);} to { transform: translateY(-120px);} }
+
+.bg-portal {
+  position:fixed; inset:0; z-index:0;
+  background: radial-gradient( circle at 70% 20%, rgba(79,195,247,0.08) 0%, rgba(255,209,102,0.03) 10%, transparent 40% );
+  pointer-events:none;
+  filter: blur(40px);
+}
+
+/* Page & hero */
+.page{min-height:100vh; display:flex; align-items:center; justify-content:center; padding:32px; position:relative; overflow:hidden}
+.hero{ position:relative; z-index:2; width:100%; max-width:980px; }
+.hero-inner{
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border-radius:18px; padding:28px; box-shadow: 0 10px 40px rgba(3,8,20,0.6);
+  backdrop-filter: blur(6px);
+}
+
+/* logo and title */
+.logo{ width:120px; display:block; margin: 0 auto 12px; filter: drop-shadow(0 6px 18px rgba(79,195,247,0.18)); }
+.title{ text-align:center; font-size:34px; margin:0; color:var(--accent); letter-spacing:1px; }
+.subtitle{ text-align:center; margin-top:6px; color:var(--muted); font-size:14px; }
+
+/* meta container */
+.meta{ margin-top:18px; display:flex; flex-direction:column; gap:14px; align-items:center;}
+.contract{ width:100%; max-width:640px; }
+.contract label{ font-size:12px; color:var(--muted); display:block; margin-bottom:6px; }
+.contract-row{ display:flex; gap:8px; align-items:center; background:var(--card); padding:10px 12px; border-radius:10px; border:1px solid rgba(255,255,255,0.02); }
+.contract-row code{ font-size:13px; color:#cfefff; word-break:break-all; }
+
+/* buttons */
+.links{ display:flex; gap:10px; flex-wrap:wrap; margin-top:6px; justify-content:center; }
+.btn{ display:inline-flex; align-items:center; justify-content:center; padding:10px 14px; border-radius:10px; text-decoration:none; font-weight:600; color:#071022; }
+.btn.primary{ background: linear-gradient(90deg,var(--accent) 0%, #6ad5ff 100%); box-shadow: 0 8px 30px rgba(79,195,247,0.12); color:#021428;}
+.btn.ghost{ background: transparent; border: 1px solid rgba(255,255,255,0.06); color:var(--muted); padding:9px 12px; }
+.btn.alt{ background: linear-gradient(90deg,var(--accent-2), #f7a84a); color:#071022; }
+
+/* small desc */
+.desc{ margin-top:16px; color:rgba(235,245,255,0.85); font-size:15px; max-width:760px; margin-left:auto; margin-right:auto; text-align:center; }
+
+/* cards */
+.cards{ display:flex; gap:12px; margin-top:18px; justify-content:center; flex-wrap:wrap; }
+.card{ background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); padding:12px 16px; border-radius:10px; min-width:120px; text-align:center; border:1px solid rgba(255,255,255,0.02); }
+.card h4{ margin:0; color:var(--muted); font-size:13px; }
+.card p{ margin:6px 0 0; font-weight:700; color:#fff; }
+
+/* hint & credit */
+.hint{ margin-top:12px; font-size:13px; color:rgba(255,255,255,0.6); text-align:center; }
+.credit{ margin-top:18px; font-size:13px; color:rgba(255,255,255,0.35); text-align:center; }
+
+/* ghost button small */
+.ghost{ background:transparent; border:1px solid rgba(255,255,255,0.06); padding:8px 10px; border-radius:8px; color:var(--muted); }
+
+/* responsive */
+@media(min-width:760px){
+  .hero-inner{ padding:36px; }
+  .logo{ width:160px; margin-bottom:8px; }
+  .title{ font-size:40px; }
+  .meta{ flex-direction:row; align-items:center; justify-content:space-between; gap:18px; }
+  .contract{ max-width:420px; }
+}
+
+/* small animation for button hover */
+.btn.primary:hover{ transform: translateY(-2px); transition: transform .18s ease; }
+
+/* subtle glowing ring around logo using pseudo-element (works if svg has transparent background) */
+.logo { position: relative; }
+.logo::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  width: 160px; height: 160px; border-radius:50%;
+  box-shadow: 0 0 40px rgba(79,195,247,0.12), inset 0 0 18px rgba(255,209,102,0.04);
+  z-index:-1;
+  opacity:0.9;
+}
+
+/* small fade in */
+.hero-inner{ opacity:0; transform: translateY(6px); animation: appear .9s ease forwards; }
+@keyframes appear { to { opacity:1; transform:none;} }
+
+/* drift effect for stars improved */
+.bg-stars{ opacity:0.5; filter: blur(7px) saturate(140%); }
