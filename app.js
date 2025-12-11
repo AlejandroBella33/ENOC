@@ -1,6 +1,3 @@
-// app.js (module) — Web3Modal v2 + WalletConnect v2 + ethers.js (v5)
-// Pega exactamente este archivo en tu repo (root). index.html ya lo carga como módulo.
-
 import { Web3Modal } from "https://unpkg.com/@web3modal/html@2.6.0/dist/index.js";
 import { EthereumClient, w3mConnectors, w3mProvider } from "https://unpkg.com/@web3modal/ethereum@2.5.0/dist/index.js";
 import { ethers } from "https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.esm.min.js";
