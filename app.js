@@ -11,7 +11,7 @@ const routerABI = [
   {"inputs":[{"internalType":"uint256","name":"amountIn","type":"uint256"},{"internalType":"uint256","name":"amountOutMin","type":"uint256"},{"internalType":"address[]","name":"path","type":"address[]"},{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"deadline","type":"uint256"}],"name":"swapExactTokensForTokens","outputs":[{"internalType":"uint256[]","name":"amounts","type":"uint256[]"}],"stateMutability":"nonpayable","type":"function"}
 ];
 
-// minimal ERC20 approve ABI
+// minimal ERC20 approve and balanceOf ABI
 const erc20ABI = [
   {"constant":false,"inputs":[{"name":"spender","type":"address"},{"name":"value","type":"uint256"}],"name":"approve","outputs":[{"name":"","type":"bool"}],"type":"function"},
   {"constant":true,"inputs":[{"name":"owner","type":"address"}],"name":"balanceOf","outputs":[{"name":"balance","type":"uint256"}],"type":"function"}
@@ -147,7 +147,7 @@ async function buyENOC() {
     const usdt = new web3.eth.Contract(erc20ABI, CONFIG.usdtAddress);
 
     // Convert USDT to 6-decimals format
-    const amountIn = web3.utils.toWei(amountUSDT, "mwei"); // mwei => 10^6
+    const amountIn = web3.utils.toWei(amountUSDT, "mwei"); // mwei => 10^6 (USDT tiene 6 decimales)
 
     // Approve router to spend USDT
     setStatus("Solicitando aprobación USDT...");
@@ -158,7 +158,7 @@ async function buyENOC() {
     const deadline = Math.floor(Date.now() / 1000) + 120;
 
     // Swap: USDT -> ENOC
-    // amountOutMin set to 0 for demo (NOT recommended in production)
+    // amountOutMin set to 0 for demo (NOT recommended in production, usar Price Feeds)
     const swapTx = await router.methods.swapExactTokensForTokens(
       amountIn,
       0,
@@ -171,8 +171,8 @@ async function buyENOC() {
     setStatus("Swap realizado. Revisa tu wallet.");
   } catch (err) {
     console.error("buyENOC error", err);
-    setStatus("Error en la transacción. Revisa consola/wallet.");
-    alert("Error: " + (err.message || err));
+    setStatus("Error en la transacción. La compra/venta puede exceder los límites anti-ballena del contrato.");
+    alert("Error: La transacción ha fallado. Esto puede deberse a que excede los límites de compra/holding del Contrato Anti-Ballena: " + (err.message || err));
   }
 }
 
@@ -183,6 +183,5 @@ btnBuy.addEventListener("click", buyENOC);
 
 // initialize
 initWeb3Modal();
-// If user previously had a cached provider, you might want to auto-connect; left disabled for safety.
 
 setStatus("Listo. Pulsa 'Conectar Wallet' para empezar.");
