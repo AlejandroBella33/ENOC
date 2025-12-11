@@ -1,8 +1,3 @@
-/* ENOC Mini-App v2 — app.js
-   Universal connection: MetaMask injected + WalletConnect via Web3Modal
-   Ready for GitHub Pages (public hosting)
-*/
-
 const CONFIG = {
   enocAddress: "0xab8DF9213d13a3cDe984A83129e6acDaCBA78633",
   usdtAddress: "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174",
