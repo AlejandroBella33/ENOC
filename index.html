@@ -45,7 +45,7 @@
                         <li><strong>Límite de Venta Progresivo:</strong> Las ventas se limitan a un % de tu balance (5% al inicio, hasta 30%) y solo se permiten cada 8 horas.</li>
                         <li><strong>Retiro Gradual:</strong> La capacidad máxima de venta aumenta con la antigüedad de tu *holding*.</li>
                     </ul>
-                    <p class="small">Revisa siempre el contrato oficial para la información más precisa sobre las limitaciones antes de interactuar. Si la compra falla, puede ser por estos límites.</p>
+                    <p class="small">Revisa siempre el contrato oficial para la información más precisa sobre las limitaciones antes de interactuar. Si la compra falla, puede ser por estos límites.[...]
                 </div>
                 <div class="meta">
                     <div class="contract">
@@ -148,7 +148,19 @@
 
         // ABI para swapExactTokensForTokensSupportingFeeOnTransferTokens, que soporta tokens con impuestos/fees (como ENOCv2)
         const ROUTER_ABI = [
-            {"name":"swapExactTokensForTokensSupportingFeeOnTransferTokens","type":"function","inputs":[{"type":"uint256","name":"amountIn"},{"type":"uint256","name":"amountOutMin"},{"type":"address[]","name":"path"},{"type":"address","name":"to"},{"type":"uint256","name":"deadline"}],"outputs":[]}
+            {
+                "name": "swapExactTokensForTokensSupportingFeeOnTransferTokens",
+                "type": "function",
+                "inputs": [
+                    { "type": "uint256", "name": "amountIn" },
+                    { "type": "uint256", "name": "amountOutMin" },
+                    { "type": "address[]", "name": "path" },
+                    { "type": "address", "name": "to" },
+                    { "type": "uint256", "name": "deadline" }
+                ],
+                "outputs": [],
+                "stateMutability": "nonpayable"
+            }
         ];
 
         // =========================================================
